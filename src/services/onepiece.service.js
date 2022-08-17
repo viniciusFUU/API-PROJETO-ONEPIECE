@@ -23,38 +23,40 @@ const onePiece = [
   },
 ];
 
-const findPersonagemService = () => {
+const findAllPersonagensService = () => {
   return onePiece;
 };
 
-const findPersonagemByIdService = (id) => {
-  return onePiece.find((personagem) => personagem.id == id);
+const findByIdPersonagemService = (ParametroId) => {
+  return onePiece.find((personagem) => personagem.id === ParametroId);
 };
 
-const createPersonagemService = (id) => {
-    const newId = onepiece.length + 1;
+const createPersonagemService = (newPersonagem) => {
+  const newId = onePiece.length + 1;
   newPersonagem.id = newId;
-  onepiece.push(newPersonagem);
+  onePiece.push(newPersonagem);
   return newPersonagem;
 };
 
-const updatePersonagemService = (id) => {
+const updatePersonagemService = (id, personagemEdited) => {
   personagemEdited['id'] = id;
-  const personagemIndex = onepiece.findIndex((onepiece) => onepiece.id == id);
-  onepiece[personagemIndex] = personagemEdited;
+  const personagemIndex = onePiece.findIndex(
+    (personagem) => personagem.id == id,
+  );
+  onePiece[personagemIndex] = personagemEdited;
   return personagemEdited;
 };
 
 const deletePersonagemService = (id) => {
-    personagemEdited['id'] = id;
-  const personagemIndex = onepiece.findIndex((onepiece) => onepiece.id == id);
-  paletas[personagemIndex] = personagemEdited;
-  return personagemEdited;
+  const personagemIndex = onePiece.findIndex(
+    (personagem) => personagem.id == id,
+  );
+  return onePiece.splice(personagemIndex, 1);
 };
 
 module.exports = {
-  findPersonagemService,
-  findPersonagemByIdService,
+  findAllPersonagensService,
+  findByIdPersonagemService,
   createPersonagemService,
   updatePersonagemService,
   deletePersonagemService,

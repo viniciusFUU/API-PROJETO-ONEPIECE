@@ -1,10 +1,10 @@
-const route = require('express').Router();
-const controllerOnepiece = require('../controllers/onepiece.controller');
+route = require('express').Router();
+const controllerPersonagem = require('../controllers/onePiece.controller');
 
-route.get('/onepiece', controllerOnepiece.findOnepieceController);
-route.get('/onepiece/:id', controllerOnepiece.findOnepieceByIdController);
-route.post('/create', controllerOnepiece.createOnepieceController);
-route.put('/update/:id', controllerOnepiece.updateOnepieceController);
-route.delete('/delete/:id', controllerOnepiece.deleteOnepieceController);
+route.get('/personagens', controllerPersonagem.findAllPersonagensController);
+route.get('/personagem/:id', controllerPersonagem.findByIdPersonagemController);
+route.post('/create', controllerPersonagem.createPersonagemController);
+route.put('/update/:id', controllerPersonagem.updatePersonagemController);
+route.delete('/delete/:id', controllerPersonagem.deletePersonagemController);
 
 module.exports = route;

@@ -1,13 +1,13 @@
 const express = require('express');
 const cors = require('cors');
-const routes = require('./src/routes/onepiece.route')
+const routes = require('./src/routes/onePiece.route')
 
 const port = 3000;
 const app = express();
 
 app.use(express.json());
 app.use(cors())
-app.use('/onepiece/', routes)
+app.use('/onePiece/', routes)
 
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
