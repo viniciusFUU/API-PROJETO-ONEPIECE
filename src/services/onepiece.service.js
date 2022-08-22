@@ -1,57 +1,30 @@
-const onePiece = [
-  {
-    id: 1,
-    nome: 'Monkey D. Luffy',
-    descricao: 'O famoso pirata que estica do chapéu de palha :D',
-    foto: 'https://w7.pngwing.com/pngs/113/90/png-transparent-one-piece-monkey-d-luffy-illustration-monkey-d-luffy-brook-vinsmoke-sanji-goku-chibi-one-piece-food-hand-cartoon.png',
-    recompensa: '3 bilhões de berys',
-  },
-  {
-    id: 2,
-    nome: 'Roronoa Zoro',
-    descricao:
-      'O espadachim e "caçador de piratas", mesmo sendo um pirata kkkk.',
-    foto: 'https://www.pngfind.com/pngs/m/245-2452080_one-piece-zoro-png-roronoa-zoro-wallpaper-iphone.png',
-    recompensa: '320 milhões de berys',
-  },
-  {
-    id: 3,
-    nome: 'Vinsmoke Sanji',
-    descricao: 'O cozinheiro do bando e famoso pelas suas "Pernas negras".',
-    foto: 'https://w7.pngwing.com/pngs/788/763/png-transparent-vinsmoke-sanji-graphic-vinsmoke-sanji-monkey-d-luffy-one-piece-pirate-warriors-nami-roronoa-zoro-one-piece-cartoon-fictional-character-shoe-thumbnail.png',
-    recompensa: '330 milhões de berys',
-  },
-];
+const OnePiece = require('../models/OnePiece');
 
-const findAllPersonagensService = () => {
-  return onePiece;
+const findAllPersonagensService = async () => {
+  const personagens = await OnePiece.find();
+  return personagens;
 };
 
-const findByIdPersonagemService = (ParametroId) => {
-  return onePiece.find((personagem) => personagem.id === ParametroId);
+const findByIdPersonagemService = async (ParametroId) => {
+  const personagens = await OnePiece.findById(ParametroId);
+  return personagens;
 };
 
-const createPersonagemService = (newPersonagem) => {
-  const newId = onePiece.length + 1;
-  newPersonagem.id = newId;
-  onePiece.push(newPersonagem);
-  return newPersonagem;
+const createPersonagemService = async (newPersonagem) => {
+  const personagemCreated = await OnePiece.create(newPersonagem);
+  return personagemCreated;
 };
 
-const updatePersonagemService = (id, personagemEdited) => {
-  personagemEdited['id'] = id;
-  const personagemIndex = onePiece.findIndex(
-    (personagem) => personagem.id == id,
+const updatePersonagemService = async (id, personagemEdited) => {
+  const personagemUpdate = await OnePiece.findByIdAndUpdate(
+    id,
+    personagemEdited,
   );
-  onePiece[personagemIndex] = personagemEdited;
-  return personagemEdited;
+  return personagemUpdate;
 };
 
-const deletePersonagemService = (id) => {
-  const personagemIndex = onePiece.findIndex(
-    (personagem) => personagem.id == id,
-  );
-  return onePiece.splice(personagemIndex, 1);
+const deletePersonagemService = async (id) => {
+  return await OnePiece.findByIdAndDelete(id);
 };
 
 module.exports = {
